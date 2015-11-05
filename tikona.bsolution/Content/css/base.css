@@ -1,0 +1,4 @@
+﻿@import url(http://weloveiconfonts.com/api/?family=typicons);
+[class*="typicons-"]:before {
+    font-family: 'typicons',sans-serif;
+}

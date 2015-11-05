@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Admin</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        function MailService(f) {
+            document.getElementById('start').value = f;
+            document.getElementById('stop').value = !f;
+        }
+    </script>
+</head>
+<body>
+    <form action="/admin/Service" method="post">
+        <div style="width:300px; margin:0 auto;margin-top: 25%;">
+            @{
+                if (ViewData["Message"] != null)
+                {
+                    <span style="float:left;margin-left: 50px;margin-bottom: 14px;width: 210px;">@ViewData["Message"].ToString()</span>
+                }
+            }
+            <label for="tkname" style="float:left">Name:</label><input type="text" id="username" name="tkname" style="float:left;margin-left: 50px;margin-bottom: 14px;">
+            <label for="tkpass" style="float:left">Password:</label><input type="password" id="password" name="tkpass" style="float:left;margin-left: 28px;margin-bottom: 14px;">
+            <label for="" style="float:left;width: 158px;">Mail Service:</label>
+            <input type="radio" name="tkmail" onclick="MailService(true)" style="float:left;margin-left: 8px;margin-bottom: 14px;">
+            <input type="hidden" name="start" id="start" />
+            <input type="hidden" name="stop" id="stop" />
+            <label for="Start" style="float:left">Start</label>
+            <input type="radio" name="tkmail" onclick="MailService(false)" style="float:left;margin-left: 8px;margin-bottom: 14px;">
+            <label for="Stop" style="float:left">Stop</label>
+            <label for="tkinterval" style="float:left">Time Interval:</label><input type="text" id="tkinterval" name="tkinterval" style="float:left;margin-left: 4px;width: 168px;margin-bottom: 14px;">
+            <label for="tkdate" style="float:left">Start Date:</label><input type="datetime" id="date" name="tkdate" style="float:left;margin-left: 27px;width: 168px;margin-bottom: 14px;">
+            <input type="submit" style="float:left;margin-left: 214px;" value="Execute">
+        </div>
+    </form>
+
+</body>
+</html>
+
+
+

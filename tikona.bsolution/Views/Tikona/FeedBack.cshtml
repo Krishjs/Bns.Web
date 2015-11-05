@@ -1,0 +1,247 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Feed Back</title>
+     @Scripts.Render("~/bundles/Scripts")
+     <script src="~/Content/js/notify-custom.js"></script>
+    <link href="~/Content/css/base.css" rel="stylesheet" />
+    <style type="text/css">
+        
+        .buttonfeedback:hover {
+            
+            cursor:pointer;
+            background-color:#444;
+            border-color:#444;
+        }
+        .buttonfeedback {
+            padding: 10px;border-radius:4px;color:white;font-weight:bold;background-color:rgb(194, 13, 13);border-color:rgb(194, 13, 13);width:95px;
+        }
+        .message {
+            padding:10px;/*width:360px;*/ width: inherit; margin-top: 10px;margin-bottom: 10px;  background-color: rgb(242, 242, 242); border-radius: 5px;border:2px solid rgb(223, 223, 223);
+        }
+        .txtarea {
+            font-family:'Ubuntu','sans-serif';
+            vertical-align: top; height: 125px; font-size: 16px;border-color:rgb(242, 242, 242); box-shadow: 0px 0px 0px 2px rgba(0,0,0,0); background-color: rgb(242, 242, 242); /*width: 330px;*/border:none;overflow:auto;
+        }     
+        .foc:focus {
+            outline:none;
+        }
+        .ip {
+            
+            vertical-align: top; height: 15px; border:1px solid; font-size: 16px; border-color:rgb(242, 242, 242);  background-color: rgb(242, 242, 242);/*width: 330px;*/
+        }
+    </style>
+    <script>
+        $.notify.defaults({ globalPosition: 'top left', clickToHide: true, autoHideDelay: 4000, });
+        $.notify.addStyle('infotheme', {
+            html: "<div><span data-notify-text/>!</div>",
+
+            classes: {
+                    
+                base: {
+                    "white-space": "nowrap",
+                    "background-color": "black",
+                    "color": "white",
+                    "padding": "15px",
+                    "padding-top": "20px",
+                    "padding-bottom": "20px",
+                    "padding": "8px 15px 8px 14px",
+                    "white-space": "nowrap",
+                    "font-weight": "bold",
+                    "border-radius": "8px",
+                    "background-position": "10px 12px",
+                    "opacity": ".7",
+                    "padding-left": "50px",
+                    "background-repeat": "no-repeat",
+                    "background-image": "url(images/info.ico)",
+                    "font-family": "Ubuntu, sans-serif",
+                },
+
+            }
+        });
+        $.notify.addStyle('successtheme', {
+            html: "<div><span data-notify-text/>.</div>",
+
+            classes: {
+
+                base: {
+                    "white-space": "nowrap",
+                    "background-color": "black",
+                    "color": "white",
+                    "padding": "15px",
+                    "padding-top": "20px",
+                    "padding-bottom": "20px",
+                    "padding": "8px 15px 8px 14px",
+                    "white-space": "nowrap",
+                    "font-weight": "bold",
+                    "border-radius": "8px",
+                    "background-position": "10px 12px",
+                    "opacity": ".7",
+                    "padding-left": "30px",
+                    "background-repeat": "no-repeat",
+                    "background-image": "url(images/check-mark-3-16.ico)",
+                    "font-family": "Ubuntu, sans-serif",
+                },
+
+            }
+        });
+        function submit() {
+            if (validate()) {
+                $.notify('Thanks for your interest', {
+                    style: 'successtheme'
+                });
+                saveDetails();
+                clear();
+               
+
+
+
+            }
+        }
+        function clear() {
+            var input = document.getElementsByName("name");
+            input[0].value = "";
+            input = document.getElementsByName("email");
+            input[0].value = "";
+            input = document.getElementsByName("mobile");
+            input[0].value = "";
+            input = document.getElementsByName("message");
+            input[0].value = "";
+        }
+        function validate() {
+            var input = document.getElementsByName("name");
+            if (input[0].value) {
+                if (input[0].value.length < 3) {
+                    toast('Please enter valid Name');
+                    return false;
+                }
+            }
+            else {
+                toast('Please enter your Name');
+                return false;
+            }
+            input = document.getElementsByName("email");
+            if (input[0].value) {
+                var pattern = /[-0-9a-zA-Z.+_]+@@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/;
+                if (!input[0].value.match(pattern)) {
+                    toast('Please enter valid Email ID');
+                    return false;
+                }
+            }
+            else {
+                toast('Please enter your Email ID');
+                return false;
+            }
+            input = document.getElementsByName("mobile");
+            if (input[0].value) {
+                var pattern = /^\d{10}$/;
+                if (!input[0].value.match(pattern)) {
+                    toast('Please enter valid Mobile Number');
+                    return false;
+                }
+            }
+            else {
+                toast('Please enter your Mobile Number');
+                return false;
+            }
+            input = document.getElementsByName("message");
+            if (input[0].value) {
+                if (input[0].value.length < 3) {
+                    toast('Please enter valid Address');
+                    return false;
+                }
+            }
+            else {
+                toast('Please enter your Address');
+                return false;
+            }
+            return true;
+        }
+        function toast(message) {
+            $.notify(message, {
+                style: 'infotheme'
+            });
+        }
+        function saveDetails() {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Submit")',
+                data: JSON.stringify({ "userName": (document.getElementsByName("name"))[0].value,
+                    "emailAddress": (document.getElementsByName("email"))[0].value, 
+                    "phone": (document.getElementsByName("mobile"))[0].value,
+                    "address": (document.getElementsByName("message"))[0].value }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    //alert('success');
+                },
+                error: function (e) {
+                    //alert('end');
+                }
+            });
+        }
+    </script>
+</head>
+<body style="color: #e63b33;background-color:white; font-family:'Ubuntu', sans-serif; font-size: 14px; font-weight: 400; font-style: normal">
+    <form>
+
+        <div style="margin: auto;">
+            <div>
+                <div>
+                    Your Name:
+       
+                <div class="rgn message">
+                    <span style="margin-top:10px" class="typicons-user"></span>
+                    <input class="foc ip" name="name"  type="text" />
+                </div>
+                </div>
+                  <div>
+                    Email:
+       
+               <div class="rgn message">
+                    <span style="margin-top:10px" class="typicons-mail"></span>
+                    <input class="foc ip" name="email"  type="email" />
+                </div>
+                </div>
+                  <div>
+                    Mobile Number:
+       
+                <div class="rgn message">
+                    <span style="margin-top:10px" class="typicons-phone"></span>
+                    <input class="foc ip" name="mobile"  type="tel"  />
+                </div>
+                </div>
+
+                 <div>
+                    Address:
+       
+                <div id="usermessage" class="rgn message">
+                    <span style="margin-top:10px" class="typicons-home"></span>
+                    <textarea class="foc txtarea" name="message"  id="message" rows="10" cols="30"> </textarea>
+                </div>
+                </div>
+                
+                <div style=" margin-top: 10px;margin-bottom: 10px;margin-left:130px">
+                    <div onclick="submit()" class="buttonfeedback">
+                        <span  style="height: 22px;  font-size: 16px;">Ask For Visit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    <script>
+        
+        $(".foc").focus(function () {
+            $(this).parent().css("border-color", "rgb(120,120,120)");
+        });
+
+        $(".foc").focusout(function () {
+            $(this).parent().css("border-color", "rgb(223, 223, 223)");
+        });
+    </script>
+</body>
+</html>

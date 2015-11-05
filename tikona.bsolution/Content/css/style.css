@@ -1,0 +1,535 @@
+[class*="typicons-"]:before {
+    font-family: 'typicons',sans-serif;
+}
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+    background: url("../content/images/tikano.png");
+    background: url('../content/images/tikano.png') fixed 50% / cover;
+    background-size: 100% 100%;
+    /*height:auto;
+	width:auto;*/
+    font-family: 'Raleway', sans-serif;
+}
+
+.upuntu {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 30px auto;
+}
+
+.left {
+    width: 50%;
+    float: left;
+    padding-right: 5%;
+    /*margin-top: 10%;*/
+}
+
+.right {
+    width: 45%;
+    float: right;
+}
+
+h1 {
+    margin: .7em 0;
+    font-size: 42px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+h2 {
+    margin: .7em 0;
+    line-height: 42px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 38px;
+}
+
+h4 {
+    margin: 1.5em 0;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.btnPanel li {
+    display: inline-block;
+}
+
+.f12 {
+    font-size: 12px;
+}
+
+header {
+    background: #d82327;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+}
+
+    header h2 {
+        padding: 15px;
+    }
+
+.right-content {
+    border-radius: 50px;
+    background: rgb(244,244,244);
+    position: relative;
+    top: -28px;
+}
+
+.right h2 {
+    color: white;
+    text-align: center;
+}
+
+.list-container {
+    padding: 0 20px;
+    overflow: hidden;
+    padding-bottom: 25px;
+}
+
+.right * {
+    color: rgb(250,59,51);
+}
+
+b {
+    font-weight: bold;
+}
+
+.post {
+    color: #424242;
+}
+
+.plan-list {
+    width: 93%;
+    float: left;
+    padding: 0 10px;
+    height: auto;
+    margin-right: 39px;
+    background: rgb(209,209,210);
+    background-image: url("../content/images/bsell2.png");
+    background-repeat: no-repeat;
+    background-position: left top;
+    text-align: center;
+}
+
+.minfo {
+    width: 97.5%;
+    float: left;
+    padding: 5px;
+    background-color: #e63b33;
+    color: white;
+    font-size: 12px;
+}
+
+    .minfo li {
+        padding: 2px;
+        font-size: 12px;
+        color: white;
+    }
+
+    .minfo b {
+        color: white;
+    }
+
+.dd {
+    padding: 5px 20px;
+}
+
+.bx-wrapper {
+    height: 330px;
+}
+
+.bx-controls-direction {
+    display: none;
+}
+
+.bx-pager-link {
+    display: block;
+    background: #ccc;
+    color: white;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    text-indent: -9999px;
+    float: left;
+    margin-right: 10px;
+}
+
+    .bx-pager-link:hover {
+        background: rgb(250,59,51);
+    }
+
+.bx-pager-item {
+    position: relative;
+    top: 10px;
+    left: 47%;
+}
+
+.active {
+    background: rgb(250,59,51);
+}
+
+.plan-list:nth-child(even) {
+    margin-right: 0;
+}
+
+.plan-list p {
+    margin: 20px 0;
+}
+
+.plan-list h4 {
+    margin: 10px 0;
+    padding: 0;
+    font-size: 26px;
+}
+
+.know:hover {
+    border-color: rgb(250,59,51);
+    box-shadow: 0 3px 0 0 rgb(250,59,51);
+}
+
+.know {
+    font-size: 14px;
+    display: inline-block;
+    width: 87px;
+    border: 1px solid #CCCDD0;
+    border-radius: 20px 20px 20px 20px;
+    padding: 11px 11px 9px;
+    text-align: center;
+    color: #6A6A6A;
+    background: white;
+    box-shadow: 0 3px 0 0 #646464;
+    -webkit-transition: all .3s;
+}
+
+.plan-list a {
+    font-size: 14px;
+    display: inline-block;
+    width: 87px;
+    border: 1px solid #CCCDD0;
+    border-radius: 20px 20px 20px 20px;
+    padding: 11px 11px 9px;
+    text-align: center;
+    color: #6A6A6A;
+    background: white;
+    box-shadow: 0 3px 0 0 #646464;
+    -webkit-transition: all .3s;
+}
+
+.btn {
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    width: 87px;
+    border: 1px solid #CCCDD0;
+    border-radius: 20px 20px 20px 20px;
+    padding: 11px 11px 9px;
+    text-align: center;
+    color: #6A6A6A;
+    background: white;
+    box-shadow: 0 3px 0 0 #646464;
+    -webkit-transition: all .3s;
+}
+
+    .btn:hover {
+        border-color: rgb(250,59,51);
+        box-shadow: 0 3px 0 0 rgb(250,59,51);
+    }
+
+
+
+
+.plan-list a:hover {
+    border-color: rgb(250,59,51);
+    box-shadow: 0 3px 0 0 rgb(250,59,51);
+}
+
+p {
+    font-size: 12px;
+}
+
+.contact {
+    margin-top: 30px;
+    color: white;
+    border-radius: 20px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 27px;
+    letter-spacing: 1px;
+    text-align: center;
+    font-family: arial;
+    background: #D82327;
+    float: right;
+    margin: 0;
+    width: 210px;
+}
+
+#reg-frm-wrap .right-content {
+    height: 521px;
+    border-radius: 13px;
+    top: 0px;
+    width: 400px;
+    overflow: hidden;
+    left: 110px;
+}
+
+#logo {
+    float: left;
+    margin: 0;
+}
+
+.row {
+    padding: 0 15px;
+    clear: both;
+}
+
+    .row:before, .row:after {
+        display: block;
+        content: '';
+        clear: both;
+    }
+
+#footer {
+    margin: 0 auto;
+    color: white;
+    padding: 30px 15px 0;
+}
+
+    #footer p {
+        text-align: center;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 20px auto;
+    }
+
+    .row {
+        padding: 0 10px;
+    }
+
+    .left {
+        width: inherit;
+        float: none;
+        height: 70px;
+        padding: 0;
+    }
+
+    #logo {
+        font-size: 30px;
+        float: left;
+    }
+
+    #reg-frm-wrap {
+        float: initial;
+        width: 100%;
+    }
+
+        #reg-frm-wrap .right-content {
+            width: inherit;
+            left: 0px;
+        }
+}
+
+@media screen and (max-width: 380px) {
+    .left {
+        height: 100px;
+    }
+
+    #logo {
+        float: none;
+        margin-bottom: 10px;
+    }
+
+    .contact {
+        float: none;
+        width: inherit;
+    }
+}
+
+/* latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 100;
+    src: local('Raleway Thin'), local('Raleway-Thin'), url(http://fonts.gstatic.com/s/raleway/v9/RJMlAoFXXQEzZoMSUteGWFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 200;
+    src: local('Raleway ExtraLight'), local('Raleway-ExtraLight'), url(http://fonts.gstatic.com/s/raleway/v9/8KhZd3VQBtXTAznvKjw-k_k_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Raleway Light'), local('Raleway-Light'), url(http://fonts.gstatic.com/s/raleway/v9/-_Ctzj9b56b8RgXW8FArifk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Raleway'), url(http://fonts.gstatic.com/s/raleway/v9/0dTEPzkLWceF7z0koJaX1A.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Raleway Medium'), local('Raleway-Medium'), url(http://fonts.gstatic.com/s/raleway/v9/CcKI4k9un7TZVWzRVT-T8_k_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Raleway SemiBold'), local('Raleway-SemiBold'), url(http://fonts.gstatic.com/s/raleway/v9/xkvoNo9fC8O2RDydKj12b_k_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Raleway Bold'), local('Raleway-Bold'), url(http://fonts.gstatic.com/s/raleway/v9/JbtMzqLaYbbbCL9X6EvaI_k_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 800;
+    src: local('Raleway ExtraBold'), local('Raleway-ExtraBold'), url(http://fonts.gstatic.com/s/raleway/v9/1ImRNPx4870-D9a1EBUdPPk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Raleway Heavy'), local('Raleway-Heavy'), url(http://fonts.gstatic.com/s/raleway/v9/PKCRbVvRfd5n7BTjtGiFZPk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* cyrillic-ext */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ubuntu'), url(http://fonts.gstatic.com/s/ubuntu/v8/ODszJI8YqNw8V2xPulzjO_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+/* cyrillic */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ubuntu'), url(http://fonts.gstatic.com/s/ubuntu/v8/iQ9VJx1UMASKNiGywyyCXvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ubuntu'), url(http://fonts.gstatic.com/s/ubuntu/v8/WkvQmvwsfw_KKeau9SlQ2_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ubuntu'), url(http://fonts.gstatic.com/s/ubuntu/v8/gYAtqXUikkQjyJA1SnpDLvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+0370-03FF;
+}
+/* latin-ext */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ubuntu'), url(http://fonts.gstatic.com/s/ubuntu/v8/Wu5Iuha-XnKDBvqRwQzAG_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ubuntu'), url(http://fonts.gstatic.com/s/ubuntu/v8/sDGTilo5QRsfWu6Yc11AXg.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+    font-family: 'Indie Flower';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Indie Flower'), local('IndieFlower'), url(http://fonts.gstatic.com/s/indieflower/v8/10JVD_humAd5zP2yrFqw6ugdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}

@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Admin</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        function MailService(f) {
+            document.getElementById('start').value = f;
+            document.getElementById('stop').value = !f;
+        }
+    </script>
+</head>
+<body>
+    <form action="/admin/ShowErrors" method="post">
+        <div style="width:300px; margin:0 auto;margin-top: 25%;">          
+            <label for="tkname" style="float:left">Name:</label><input type="text" id="username" name="tkname" style="float:left;margin-left: 50px;margin-bottom: 14px;">
+            <label for="tkpass" style="float:left">Password:</label><input type="password" id="password" name="tkpass" style="float:left;margin-left: 28px;margin-bottom: 14px;">                        
+            <input type="submit" style="float:left;margin-left: 180px;margin-bottom: 14px;" value="Show Errors">
+            
+                @{
+                    if (ViewData["Message"] != null)
+                    {
+                        <span style="border:solid  1px;">@ViewData["Message"].ToString()</span>
+                    }
+                }
+                        
+        </div>
+    </form>
+
+</body>
+</html>
+
+
+
+
+
