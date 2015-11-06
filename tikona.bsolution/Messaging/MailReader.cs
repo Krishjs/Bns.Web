@@ -85,7 +85,8 @@ namespace Bns.Framework.Common.Messaging
             Current.IsRead = true;
             while (Current.IsRead)
             {
-                RefreshInbox(settings);
+                ErrorQueue.Enqueue("Reader Started At: " + DateTime.Now.ToString());
+                RefreshInbox(settings);                
                 Thread.Sleep(TimeSpan.FromMinutes(value: timeInterval));
                 timeStamp = timeStamp.AddMinutes(value: timeInterval);
             }
@@ -110,7 +111,7 @@ namespace Bns.Framework.Common.Messaging
                         .And(SearchQuery.SubjectContains(text: "Work Order - 'SF Recover Equipment'"));
 
                     IList<UniqueId> indexes = inbox.Search(query);
-
+                    ErrorQueue.Enqueue("Total Mails Read: " + indexes.Count);
                     foreach (var index in indexes)
                     {
                         MimeMessage msg = inbox.GetMessage(index);
