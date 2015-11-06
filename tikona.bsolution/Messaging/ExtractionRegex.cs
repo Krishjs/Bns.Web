@@ -6,7 +6,7 @@ namespace Bns.Framework.Common.Messaging
 
         public static readonly string User = @"USER ID:(?<token>\s\w+)";
 
-        public static readonly string Date = @"DATE:(?<token>\s\w+)";
+        public static readonly string Date = @"DATE:(?<token>.*\w+)";
 
         public static readonly string Customer = @"Customer Name:(?<token>.*\w+)";
 
