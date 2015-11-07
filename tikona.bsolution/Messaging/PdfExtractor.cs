@@ -21,6 +21,7 @@ namespace Bns.Framework.Common.Messaging
             recoveryDetails.PinCode   = GetValueFromText(text, ExtractionRegex.PinCode);
             return recoveryDetails;
         }
+
         private static string GetValueFromText(string text, string regex, RegexOptions option = RegexOptions.None)
         {
             MatchCollection mat = Regex.Matches(text, regex, option);

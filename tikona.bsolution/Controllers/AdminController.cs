@@ -40,9 +40,6 @@ namespace Tikona.BSolution.Controllers
         // GET: Admin
         public ActionResult Service(string tkname, string tkpass, DateTime? tkdate = null, bool start = false, bool stop = true, int tkinterval = 10)
         {
-            string server = "mail.tikonapartner.in";
-            string user = "Big.networks";
-            string emailpass = "chinthamani";
             if (IsUserValid(tkpass))
             {                
                 if (start)
@@ -50,12 +47,11 @@ namespace Tikona.BSolution.Controllers
                     MailReader.SetTimeStamp(tkdate.HasValue ? tkdate.Value : DateTime.Now);
                     MailReader.SetInterval(tkinterval);
                     MailReader.SetPath(HttpContext.Server.MapPath(path: "~/Pdf/"));
-                    Task.Factory.StartNew(() => MailReader.StartRead(new MailSettings() { User = user, Server = server, Password = emailpass }), canceltoken.Token);
+                    MailReader.StartTask();
                 }
                 else
                 {
-                    canceltoken.Cancel();
-                    MailReader.StopRead();
+                    MailReader.StopTask();
                 }
                 TempData["Message"] = "Mail Services " + (start ? "Started!" : "Stopped");
             }

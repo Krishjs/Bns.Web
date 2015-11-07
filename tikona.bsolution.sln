@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tikona.Bsolution", "tikona.bsolution\Tikona.Bsolution.csproj", "{619EA0A7-3A8C-4514-9D56-7F92E232322B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tikona.Bsolution.Tests1", "Tikona.Bsolution.Tests1\Tikona.Bsolution.Tests1.csproj", "{F6D8F55F-0AE4-4337-A2E1-7FC40243C317}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tikona.Bsolution.Tests", "Tikona.Bsolution.Tests1\Tikona.Bsolution.Tests.csproj", "{F6D8F55F-0AE4-4337-A2E1-7FC40243C317}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

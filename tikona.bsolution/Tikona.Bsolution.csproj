@@ -163,16 +163,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Messaging\MailRecieverSettings.cs" />
     <Compile Include="Controllers\TikonaController.cs" />
     <Compile Include="Error Queue\ErrorQueue.cs" />
     <Compile Include="Messaging\EmailRider.cs" />
+    <Compile Include="Messaging\EmailRiderSettings.cs" />
     <Compile Include="Messaging\ExtractionRegex.cs" />
     <Compile Include="Messaging\IRider.cs" />
     <Compile Include="Messaging\MailReader.cs" />
-    <Compile Include="Messaging\MailSettings.cs" />
     <Compile Include="Messaging\PdfExtractor.cs" />
     <Compile Include="Messaging\RecoveryDetails.cs" />
     <Compile Include="Messaging\RelayRider.cs" />
+    <Compile Include="Messaging\SettingsManager.cs" />
     <Compile Include="MvcApplication.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

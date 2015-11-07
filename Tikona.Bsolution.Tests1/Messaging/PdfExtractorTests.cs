@@ -32,7 +32,7 @@ namespace Bns.Framework.Common.Messaging.Tests
             RecoveryDetails actual = PdfExtractor.ExtractInfo(filepath: @"D:\Mobile Gopal\1113082840.pdf");
 
             //Assert
-            Assert.IsTrue(expected.AreEqual(actual));
+            Assert.IsTrue(expected.IsEqual(actual));
 
         }
 

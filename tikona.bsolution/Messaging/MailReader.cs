@@ -40,6 +40,19 @@ namespace Bns.Framework.Common.Messaging
             }
         }
 
+        public bool IsTaskRuning
+        {
+            get
+            {
+                return this.isTaskRuning;
+            }
+
+            set
+            {
+                this.isTaskRuning = value;
+            }
+        }
+
         public bool IsRead
         {
             get
@@ -53,12 +66,32 @@ namespace Bns.Framework.Common.Messaging
             }
         }
 
+        public CancellationTokenSource CancelToken
+        { 
+            get
+            {
+                if (this.cancelToken == null)
+                {
+                    this.cancelToken = new CancellationTokenSource();
+                }
+
+                return this.cancelToken;
+            }
+
+            set
+            {
+                this.cancelToken = value;
+            }
+        }
+
         private MailReader()
         {
 
         }
 
         private bool isRead;
+        private bool isTaskRuning;
+        private CancellationTokenSource cancelToken;
 
         public static void SetTimeStamp(DateTime date)
         {
@@ -70,21 +103,35 @@ namespace Bns.Framework.Common.Messaging
             timeInterval = time;
         }
 
+        internal static void StartTask()
+        {
+            var settings = SettingsManager.MailReceiverSettings;
+            Task.Factory.StartNew(() => StartRead(settings), Current.CancelToken.Token);
+        }
+
         public static void SetPath(string path)
         {
             virtualpath = path;
         }
 
-        public static void StopRead()
+        public static void StopTask()
         {
+            Current.CancelToken.Cancel();
+            Current.IsTaskRuning = false;
             Current.IsRead = false;
+            ErrorQueue.Enqueue("Service Stoped:" + DateTime.Now);
         }
-
-        public static void StartRead(MailSettings settings)
+        
+        public static void StartRead(MailReceiverSettings settings)
         {
             Current.IsRead = true;
+
+            if (Current.IsTaskRuning)
+                return;
+
             while (Current.IsRead)
             {
+                Current.IsTaskRuning = true;
                 ErrorQueue.Enqueue("Reader Started At: " + DateTime.Now.ToString());
                 RefreshInbox(settings);                
                 Thread.Sleep(TimeSpan.FromMinutes(value: timeInterval));
@@ -92,13 +139,13 @@ namespace Bns.Framework.Common.Messaging
             }
         }
 
-        private static void RefreshInbox(MailSettings settings)
+        private static void RefreshInbox(MailReceiverSettings settings)
         {
             using (var client = new ImapClient())
             {
                 try
                 {
-                    client.Connect(settings.Server, port: 143, useSsl: false);
+                    client.Connect(settings.Server, port: settings.Port, useSsl: settings.UseSsl);
 
                     client.AuthenticationMechanisms.Remove(item: "XOAUTH2");
 

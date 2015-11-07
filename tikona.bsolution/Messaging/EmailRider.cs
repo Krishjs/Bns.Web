@@ -16,19 +16,20 @@ namespace Bns.Framework.Common.Messaging
         {
             try
             {
-                var mailMessage = new MailMessage(from: "info@bsolution.in", to: "gplakrish@gmail.com")
+                var settings = SettingsManager.EmailRiderSettings;      
+                var mailMessage = new MailMessage(from: settings.From, to: settings.To)
                 {
                     Subject = "Work Order",
                     Body = FormMessage(details),
                     IsBodyHtml = false
                 };
-                mailMessage.Bcc.Add(addresses: "arun.seetharaman8@gmail.com");
-                mailMessage.Bcc.Add(addresses: "kumarjbram@yahoo.com");
-                var smtpClient = new SmtpClient(host: "mail.bsolution.in", port: 25);
+                mailMessage.Bcc.Add(addresses: settings.Cc);
+                mailMessage.Bcc.Add(addresses: settings.Bcc);
+                var smtpClient = new SmtpClient(settings.Host, settings.Port);
                 var networkCredential = new NetworkCredential()
                 {
-                    UserName = "info@bsolution.in",
-                    Password = "Payoda@123"
+                    UserName = settings.UserName,
+                    Password = settings.Password
                 };
                 smtpClient.Credentials = networkCredential;
                 smtpClient.Send(mailMessage);
