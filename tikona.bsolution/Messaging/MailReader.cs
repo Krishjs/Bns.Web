@@ -222,6 +222,7 @@ namespace Bns.Framework.Common.Messaging
         {
             if (SettingsManager.MailReaderSettings.AutoStart)
             {
+                ErrorQueue.Enqueue("Task Auto Started at " + DateTime.Now);
                 SetInterval(SettingsManager.MailReaderSettings.Interval);
                 SetTimeStamp(SettingsManager.MailReaderSettings.TimeStamp);
                 StartTask();
