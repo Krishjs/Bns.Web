@@ -6,7 +6,14 @@ namespace Bns.Framework.Common.Messaging
 {
     public class MailReaderSettings : ConfigurationSection
     {
-        private string dateFormat = "dd-MMM-yyyy HH:mm:ss";
+        private DateTime? date = null;
+
+        private DateTime GetDate()
+        {
+            if (!date.HasValue)
+                date = DateTime.Now;
+            return date.Value;
+        }
 
         [ConfigurationProperty("AutoStart", DefaultValue = "false", IsRequired = true)]
         public bool AutoStart
@@ -29,7 +36,7 @@ namespace Bns.Framework.Common.Messaging
             {
                 if ((DateTime)this["TimeStamp"] == default(DateTime))
                 {
-                    this["TimeStamp"] = DateTime.Now;
+                    return GetDate();
                 }
                 return (DateTime)this["TimeStamp"];
             }
