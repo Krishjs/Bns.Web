@@ -9,18 +9,16 @@ namespace Bns.Framework.Common.Messaging
 {
     public class RelayRider
     {        
-        private static IRider raider = new EmailRider();
-
-        public static void Set(IRider r)
-        {
-            raider = r;
-        }
-
+        public static List<IRider> Riders = new List<IRider>();
+        
         public static void Send(RecoveryDetails details)
         {
             try
             {
-                raider.Send(details);
+                foreach (IRider rider in Riders)
+                {
+                    rider.Send(details);
+                }
             }
             catch (Exception ex)
             {

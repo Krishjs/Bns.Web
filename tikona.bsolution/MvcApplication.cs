@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bns.Framework.Common.Errors;
+using Bns.Framework.Common.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,9 +14,11 @@ namespace Tikona.Bsolution
     {
         protected void Application_Start()
         {
+            ErrorQueue.Enqueue("Application Started At " + DateTime.Now);
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundle(BundleTable.Bundles);
+            MailReaderConfig.RegisterMailReader(RelayRider.Riders);
         }
     }
 }

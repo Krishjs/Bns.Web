@@ -44,5 +44,13 @@ namespace Tikona.Bsolution.Tests
             if (lhs.UseSsl != rhs.UseSsl) { return false; }
             return true;
         }
+
+        public static bool IsEqual(this MailReaderSettings lhs, MailReaderSettings rhs)
+        {
+            if (lhs.AutoStart!= rhs.AutoStart) { return false; }
+            if (lhs.Interval != rhs.Interval) { return false; }
+            if (lhs.TimeStamp != rhs.TimeStamp) { return false; }
+            return true;
+        }
     }
 }

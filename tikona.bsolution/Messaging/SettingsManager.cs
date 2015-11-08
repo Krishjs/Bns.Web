@@ -15,6 +15,14 @@ namespace Bns.Framework.Common.Messaging
             }
         }
 
+        public static MailReaderSettings MailReaderSettings
+        {
+            get
+            {
+                return (MailReaderSettings)System.Configuration.ConfigurationManager.GetSection("MailReader/ReaderSettings");
+            }
+        }
+
         public static MailReceiverSettings MailReceiverSettings
         {
             get

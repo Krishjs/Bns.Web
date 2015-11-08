@@ -10,7 +10,7 @@ using System.Reflection;
 namespace Bns.Framework.Common.Messaging.Tests
 {
     [TestClass]
-    public class EmailRiderConfigurationTest
+    public class ConfigurationTest
     {
         [TestMethod]
         public void ValidateEmailRiderSettingsConfiguration()
@@ -29,7 +29,7 @@ namespace Bns.Framework.Common.Messaging.Tests
             var asm = Assembly.Load("tikona.bsolution");
 
             //Act
-            var sut = (EmailRiderSettings)System.Configuration.ConfigurationManager.GetSection("MailSettings/EmailRiderSettings");
+            var sut = SettingsManager.EmailRiderSettings;
 
             //Assert
             Assert.IsTrue(sut.IsEqual(expected));
@@ -46,7 +46,23 @@ namespace Bns.Framework.Common.Messaging.Tests
             expected.UseSsl = false;
             expected.Port = 143;
             //Act
-            var sut = (MailReceiverSettings)System.Configuration.ConfigurationManager.GetSection("MailSettings/MailReceiverSettings");
+            var sut = SettingsManager.MailReceiverSettings;
+
+            //Assert
+            Assert.IsTrue(sut.IsEqual(expected));
+        }
+
+        [TestMethod]
+        public void ValidateMailReaderSettingsConfiguration()
+        {
+            //Arrange
+            var expected = new MailReaderSettings();
+            expected.AutoStart = true;
+            expected.Interval = 60;
+            expected.TimeStamp = DateTime.Now;
+
+            //Act
+            var sut = SettingsManager.MailReaderSettings;
 
             //Assert
             Assert.IsTrue(sut.IsEqual(expected));

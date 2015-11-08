@@ -67,7 +67,7 @@ namespace Bns.Framework.Common.Messaging
         }
 
         public CancellationTokenSource CancelToken
-        { 
+        {
             get
             {
                 if (this.cancelToken == null)
@@ -121,7 +121,7 @@ namespace Bns.Framework.Common.Messaging
             Current.IsRead = false;
             ErrorQueue.Enqueue("Service Stoped:" + DateTime.Now);
         }
-        
+
         public static void StartRead(MailReceiverSettings settings)
         {
             Current.IsRead = true;
@@ -133,7 +133,7 @@ namespace Bns.Framework.Common.Messaging
             {
                 Current.IsTaskRuning = true;
                 ErrorQueue.Enqueue("Reader Started At: " + DateTime.Now.ToString());
-                RefreshInbox(settings);                
+                RefreshInbox(settings);
                 Thread.Sleep(TimeSpan.FromMinutes(value: timeInterval));
                 timeStamp = timeStamp.AddMinutes(value: timeInterval);
             }
@@ -187,12 +187,12 @@ namespace Bns.Framework.Common.Messaging
         {
             if (Directory.Exists(virtualpath))
             {
-                var dir = new  DirectoryInfo(virtualpath);
+                var dir = new DirectoryInfo(virtualpath);
                 if (dir.GetFiles().Count() > 10)
                 {
-                    IEnumerable<FileInfo> files = dir.GetFiles().OrderByDescending(f => f.CreationTime).Skip(count:10);
+                    IEnumerable<FileInfo> files = dir.GetFiles().OrderByDescending(f => f.CreationTime).Skip(count: 10);
                     foreach (var file in files)
-                    {                        
+                    {
                         file.Delete();
                         ErrorQueue.Enqueue("Files Delete:" + file.Name);
                     }
@@ -218,5 +218,14 @@ namespace Bns.Framework.Common.Messaging
             return new MailReader();
         }
 
+        public static void Init()
+        {
+            if (SettingsManager.MailReaderSettings.AutoStart)
+            {
+                SetInterval(SettingsManager.MailReaderSettings.Interval);
+                SetTimeStamp(SettingsManager.MailReaderSettings.TimeStamp);
+                StartTask();
+            }
+        }
     }
 }
