@@ -218,13 +218,16 @@ namespace Bns.Framework.Common.Messaging
             return new MailReader();
         }
 
-        public static void Init()
+        public static void Init(string path)
         {
             if (SettingsManager.MailReaderSettings.AutoStart)
             {
                 ErrorQueue.Enqueue("Task Auto Started at " + DateTime.Now);
+                ErrorQueue.Enqueue("Task Auto Started with Interval " + SettingsManager.MailReaderSettings.Interval);
+                ErrorQueue.Enqueue("Task Auto Started with TimeStamp " + SettingsManager.MailReaderSettings.TimeStamp);
                 SetInterval(SettingsManager.MailReaderSettings.Interval);
                 SetTimeStamp(SettingsManager.MailReaderSettings.TimeStamp);
+                SetPath(path);
                 StartTask();
             }
         }

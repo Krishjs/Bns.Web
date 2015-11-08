@@ -10,7 +10,7 @@ namespace Tikona.Bsolution
     {
         public static void RegisterMailReader(List<IRider> riders)
         {
-            MailReader.Init();
+            MailReader.Init(HttpContext.Current.Server.MapPath(path: "~/Pdf/"));
             riders.Add(new EmailRider());
         }
     }
