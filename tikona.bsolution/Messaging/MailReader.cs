@@ -162,15 +162,18 @@ namespace Bns.Framework.Common.Messaging
                     foreach (var index in indexes)
                     {
                         MimeMessage msg = inbox.GetMessage(index);
-                        foreach (var ma in msg.Attachments)
+                        if (msg.Date.UtcDateTime >= timeStamp)
                         {
-                            string file = virtualpath + ma.ContentType.Name;
-                            RemoveIfAboveTen(virtualpath);
-                            if (!File.Exists(file))
+                            foreach (var ma in msg.Attachments)
                             {
-                                DownloadAttachement((MimePart)ma, file);
+                                string file = virtualpath + ma.ContentType.Name;
+                                RemoveIfAboveTen(virtualpath);
+                                if (!File.Exists(file))
+                                {
+                                    DownloadAttachement((MimePart)ma, file);
+                                }
+                                Send(PdfExtractor.ExtractInfo(file));
                             }
-                            Send(PdfExtractor.ExtractInfo(file));
                         }
                     }
 

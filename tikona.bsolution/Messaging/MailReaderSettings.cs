@@ -11,7 +11,7 @@ namespace Bns.Framework.Common.Messaging
         private DateTime GetDate()
         {
             if (!date.HasValue)
-                date = DateTime.Now;
+                date = DateTime.Now.AddMinutes(-Interval);
             return date.Value;
         }
 
