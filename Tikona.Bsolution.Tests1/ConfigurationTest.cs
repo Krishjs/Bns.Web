@@ -67,5 +67,11 @@ namespace Bns.Framework.Common.Messaging.Tests
             //Assert
             Assert.IsTrue(sut.IsEqual(expected));
         }
+
+        [TestMethod]
+        public void ValidateExtractionSettingsConfiguration()
+        {
+          
+        }
     }
 }

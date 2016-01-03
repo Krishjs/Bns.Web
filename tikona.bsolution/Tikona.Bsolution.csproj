@@ -48,6 +48,10 @@
       <HintPath>..\packages\MimeKit.1.2.14.0\lib\net45\BouncyCastle.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EPPlus, Version=4.0.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.0.4\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.7.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.7\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
@@ -152,19 +156,27 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Excel Template\Recovery_Status.xlsx" />
+    <Content Include="Pdf\1111034444.pdf" />
     <None Include="Properties\PublishProfiles\BigSolution.pubxml" />
     <None Include="Properties\PublishProfiles\Sony VAIO.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\MailReaderConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Excel Automation\SheetUpdater.cs" />
+    <Compile Include="Excel Automation\IExcelCreater.cs" />
+    <Compile Include="Messaging\ExcelOutputSettings.cs" />
+    <Compile Include="Messaging\ExtractionSettings.cs" />
     <Compile Include="Messaging\MailReaderSettings.cs" />
     <Compile Include="Messaging\MailRecieverSettings.cs" />
     <Compile Include="Controllers\TikonaController.cs" />
@@ -199,6 +211,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\ShowErrors.cshtml" />
+    <Content Include="Views\Admin\ExcelDownload.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -210,7 +223,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Pdf\" />
     <Folder Include="Riders\" />
   </ItemGroup>
   <PropertyGroup>

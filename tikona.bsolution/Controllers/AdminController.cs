@@ -1,14 +1,13 @@
 ﻿using Bns.Framework.Common.Errors;
 using Bns.Framework.Common.Messaging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
+using tikona.bsolution;
 
 namespace Tikona.BSolution.Controllers
 {
@@ -47,7 +46,9 @@ namespace Tikona.BSolution.Controllers
                     MailReader.SetTimeStamp(tkdate.HasValue ? tkdate.Value : DateTime.Now);
                     MailReader.SetInterval(tkinterval);
                     MailReader.SetPath(HttpContext.Server.MapPath(path: "~/Pdf/"));
+                    SheetUpdater.SetPath(HttpContext.Server.MapPath(path: "~/Excel Template/Recovery_Status.xlsx"));
                     MailReader.StartTask();
+                    Task.Factory.StartNew(() => OverComeAppPoolRecycle());
                 }
                 else
                 {
@@ -62,8 +63,34 @@ namespace Tikona.BSolution.Controllers
             return RedirectToAction(actionName: "Login");
         }
 
+        private Task OverComeAppPoolRecycle()
+        {
+            while(System.Configuration.ConfigurationManager.AppSettings["OverComeAppPoolReCycle"] == "true")
+            {
+                WebRequest request = WebRequest.Create("http://tikona.bsolution.in/admin/showerrors");
+                request.GetResponse();
+                Thread.Sleep(TimeSpan.FromMinutes(3));
+            }
+            return new Task(() => { });
+        }
+
+        public ActionResult ExcelDownload(string tkname, string tkpass)
+        {
+            if (IsUserValid(tkpass))
+            {
+                return File(HttpContext.Server.MapPath(path: "~/Excel Template/Recovery_Status.xlsx"), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","RecoveryStatus");
+            }
+            else
+            {
+                TempData["Message"] = "Enter Credentials";
+            }
+            return View();
+        }
+
         private bool IsUserValid(string password)
         {
+            if (string.IsNullOrEmpty(password))
+                return false;
             string salt = "+vRIgBmV5Pv24S+74R6Pog==";
             string hash = "UHA2nUdLn0YOrdNh4fc5MA==";
             int iteration = 1989;

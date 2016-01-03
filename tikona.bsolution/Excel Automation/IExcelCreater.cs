@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bns.Framework.Common.Messaging
+namespace tikona.bsolution
 {
-    public interface IRider
+    public interface IExcelCreater
     {
-        void Send(Dictionary<string,string> details);
+
+
     }
 }

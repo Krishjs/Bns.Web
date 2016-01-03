@@ -11,7 +11,7 @@ namespace Bns.Framework.Common.Messaging
     {        
         public static List<IRider> Riders = new List<IRider>();
         
-        public static void Send(RecoveryDetails details)
+        public static void Send(Dictionary<string,string> details)
         {
             try
             {

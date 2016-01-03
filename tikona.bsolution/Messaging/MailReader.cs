@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using tikona.bsolution;
 
 namespace Bns.Framework.Common.Messaging
 {
@@ -172,7 +173,9 @@ namespace Bns.Framework.Common.Messaging
                                 {
                                     DownloadAttachement((MimePart)ma, file);
                                 }
-                                Send(PdfExtractor.ExtractInfo(file));
+                                var details = PdfExtractor.ExtractInfoWithPolicy(file);
+                                Send(details);
+                                UpdateSheet(details);
                             }
                         }
                     }
@@ -203,9 +206,14 @@ namespace Bns.Framework.Common.Messaging
             }
         }
 
-        public static void Send(RecoveryDetails details)
+        public static void Send(Dictionary<string,string> details)
         {
             RelayRider.Send(details);
+        }
+
+        public static void UpdateSheet(Dictionary<string,string> details)
+        {
+            SheetUpdater.Update(details);
         }
 
         public static void DownloadAttachement(MimePart entity, string filepath)
@@ -231,7 +239,7 @@ namespace Bns.Framework.Common.Messaging
                 SetInterval(SettingsManager.MailReaderSettings.Interval);
                 SetTimeStamp(SettingsManager.MailReaderSettings.TimeStamp);
                 SetPath(path);
-                StartTask();
+                //StartTask();
             }
         }
     }

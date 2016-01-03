@@ -12,7 +12,7 @@ namespace Bns.Framework.Common.Messaging
 {
     public class EmailRider : IRider
     {
-        public void Send(RecoveryDetails details)
+        public void Send(Dictionary<string,string> details)
         {
             try
             {
@@ -41,17 +41,17 @@ namespace Bns.Framework.Common.Messaging
             }
         }
 
-        private string FormMessage(RecoveryDetails details)
+        private string FormMessage(Dictionary<string,string> details)
         {
             string extract = "Following details are extracted from PDF";
-            extract += "\n" + ("Work Order:" + details.WorkOrder);
-            extract += "\n" + ("User      :" + details.User);
-            extract += "\n" + ("Date      :" + details.Date);
-            extract += "\n" + ("Customer  :" + details.Customer);
-            extract += "\n" + ("Mobile    :" + details.Mobile);
-            extract += "\n" + ("City      :" + details.City);
-            extract += "\n" + ("Address   :" + details.Address);
-            extract += "\n" + ("PinCode   :" + details.PinCode);
+            extract += "\n" + ("Work Order:" + details["WorkOrder"]);
+            extract += "\n" + ("User      :" + details["User"]);
+            extract += "\n" + ("Date      :" + details["Date"]);
+            extract += "\n" + ("Customer  :" + details["Customer"]);
+            extract += "\n" + ("Mobile    :" + details["Mobile"]);
+            extract += "\n" + ("City      :" + details["City"]);
+            extract += "\n" + ("Address   :" + details["Address"]);
+            extract += "\n" + ("PinCode   :" + details["PinCode"]);
             return extract;
         }
     }

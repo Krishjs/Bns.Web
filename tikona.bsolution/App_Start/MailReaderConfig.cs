@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using tikona.bsolution;
 
 namespace Tikona.Bsolution
 {
@@ -12,6 +13,7 @@ namespace Tikona.Bsolution
         {
             MailReader.Init(HttpContext.Current.Server.MapPath(path: "~/Pdf/"));
             riders.Add(new EmailRider());
+            SheetUpdater.SetPath(HttpContext.Current.Server.MapPath(path: "~/Excel Template/Recovery_Status.xlsx"));
         }
     }
 }
