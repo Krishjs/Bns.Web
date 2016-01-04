@@ -37,7 +37,7 @@ namespace tikona.bsolution
         {
             var dirname = Path.GetDirectoryName(virtualpath);
             var filepath = Path.Combine(dirname, prefix + "Recovery_Status.xlsx");
-            using (var excel = new ExcelPackage(new FileInfo(Path.Combine(dirname, prefix + "Recovery_Status-cr.xlsx")), false))
+            using (var excel = new ExcelPackage(new FileInfo(Path.Combine(dirname,"Recovery_Status-cr.xlsx")), false))
             {
                 foreach (var value in extractedvalues)
                 {
