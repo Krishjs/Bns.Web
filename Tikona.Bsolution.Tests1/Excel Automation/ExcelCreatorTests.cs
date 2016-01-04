@@ -15,7 +15,8 @@ namespace tikona.bsolution.Tests
         [TestMethod()]
         public void CreateExcelTest()
         {
-            SheetUpdater.Update(PdfExtractor.ExtractInfoWithPolicy(@"C:\Users\krishnan\Source\Repos\Bns.Web\tikona.bsolution\Pdf\1111034444.pdf"););
+            SheetUpdater.SetPath(@"C:\Users\krishnan\Source\Repos\Bns.Web\tikona.bsolution\Excel Template\Recovery_Status.xlsx");
+            SheetUpdater.Update(PdfExtractor.ExtractInfoWithPolicy(@"C:\Users\krishnan\Source\Repos\Bns.Web\tikona.bsolution\Pdf\1111034444.pdf"));
 
           
         }

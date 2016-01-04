@@ -156,8 +156,13 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Excel Template\Recovery_Status.xlsx" />
+    <Content Include="Excel Template\Recovery_Status.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Pdf\1111034444.pdf" />
+    <Content Include="Excel Template\Recovery_Status-cr.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\BigSolution.pubxml" />
     <None Include="Properties\PublishProfiles\Sony VAIO.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -212,6 +217,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\ShowErrors.cshtml" />
     <Content Include="Views\Admin\ExcelDownload.cshtml" />
+    <Content Include="Views\Admin\ExcelDownloadWithFromTo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

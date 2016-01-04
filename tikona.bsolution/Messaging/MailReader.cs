@@ -140,20 +140,52 @@ namespace Bns.Framework.Common.Messaging
             }
         }
 
+        public static string GetDetailsWithinSpecificTimeSpan(DateTime from, DateTime to, MailReceiverSettings settings)
+        {
+            using (var client = new ImapClient())
+            {
+                try
+                {
+                    IMailFolder inbox = AuthenticateAndgetInbox(settings, client);
+
+                    BinarySearchQuery query = SearchQuery.DeliveredAfter(from)
+                        .And(SearchQuery.SubjectContains(text: "Work Order - 'SF Recover Equipment'"))
+                        .And(SearchQuery.DeliveredBefore(to));
+
+                    IList<UniqueId> indexes = inbox.Search(query);
+                    var dicts = new List<Dictionary<string, string>>();
+                    foreach (var index in indexes)
+                    {
+                        MimeMessage msg = inbox.GetMessage(index);
+                        foreach (var ma in msg.Attachments)
+                        {
+                            string file = virtualpath + ma.ContentType.Name;
+                            RemoveIfAboveTen(virtualpath);
+                            if (!File.Exists(file))
+                            {
+                                DownloadAttachement((MimePart)ma, file);
+                            }
+                            dicts.Add(PdfExtractor.ExtractInfoWithPolicy(file));
+                        }
+                    }
+                    client.Disconnect(quit: true);
+                    return SheetUpdater.Create(dicts, string.Format("{0}-{1}_", from.ToString("dd_MM_yyyy"), to.ToString("dd_MM_yyyy")));
+                }
+                catch (Exception ex)
+                {
+                    ErrorQueue.Enqueue(ex.Message);
+                }
+            }
+            return string.Empty;
+        }
+
         private static void RefreshInbox(MailReceiverSettings settings)
         {
             using (var client = new ImapClient())
             {
                 try
                 {
-                    client.Connect(settings.Server, port: settings.Port, useSsl: settings.UseSsl);
-
-                    client.AuthenticationMechanisms.Remove(item: "XOAUTH2");
-
-                    client.Authenticate(settings.User, settings.Password);
-
-                    IMailFolder inbox = client.Inbox;
-                    inbox.Open(FolderAccess.ReadOnly);
+                    IMailFolder inbox = AuthenticateAndgetInbox(settings, client);
 
                     BinarySearchQuery query = SearchQuery.DeliveredAfter(timeStamp)
                         .And(SearchQuery.SubjectContains(text: "Work Order - 'SF Recover Equipment'"));
@@ -189,6 +221,16 @@ namespace Bns.Framework.Common.Messaging
             }
         }
 
+        private static IMailFolder AuthenticateAndgetInbox(MailReceiverSettings settings, ImapClient client)
+        {
+            client.Connect(settings.Server, port: settings.Port, useSsl: settings.UseSsl);
+            client.AuthenticationMechanisms.Remove(item: "XOAUTH2");
+            client.Authenticate(settings.User, settings.Password);
+            IMailFolder inbox = client.Inbox;
+            inbox.Open(FolderAccess.ReadOnly);
+            return inbox;
+        }
+
         private static void RemoveIfAboveTen(string virtualpath)
         {
             if (Directory.Exists(virtualpath))
@@ -206,12 +248,12 @@ namespace Bns.Framework.Common.Messaging
             }
         }
 
-        public static void Send(Dictionary<string,string> details)
+        public static void Send(Dictionary<string, string> details)
         {
             RelayRider.Send(details);
         }
 
-        public static void UpdateSheet(Dictionary<string,string> details)
+        public static void UpdateSheet(Dictionary<string, string> details)
         {
             SheetUpdater.Update(details);
         }

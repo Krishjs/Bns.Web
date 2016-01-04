@@ -78,7 +78,22 @@ namespace Tikona.BSolution.Controllers
         {
             if (IsUserValid(tkpass))
             {
+
                 return File(HttpContext.Server.MapPath(path: "~/Excel Template/Recovery_Status.xlsx"), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","RecoveryStatus");
+            }
+            else
+            {
+                TempData["Message"] = "Enter Credentials";
+            }
+            return View();
+        }
+
+        public ActionResult ExcelDownloadWithFromTo(string tkname, string tkpass,DateTime? from,DateTime? to)
+        {
+            if (IsUserValid(tkpass) && from.HasValue && to.HasValue)
+            {
+                var path = MailReader.GetDetailsWithinSpecificTimeSpan(from.Value, to.Value, SettingsManager.MailReceiverSettings);
+                return File(path, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", System.IO.Path.GetFileName(path));
             }
             else
             {

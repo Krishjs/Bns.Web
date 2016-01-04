@@ -12,19 +12,21 @@ namespace Bns.Framework.Common.Messaging
 {
     public class EmailRider : IRider
     {
-        public void Send(Dictionary<string,string> details)
+        public void Send(Dictionary<string, string> details)
         {
             try
             {
-                var settings = SettingsManager.EmailRiderSettings;      
+                var settings = SettingsManager.EmailRiderSettings;
                 var mailMessage = new MailMessage(from: settings.From, to: settings.To)
                 {
                     Subject = "Work Order",
                     Body = FormMessage(details),
                     IsBodyHtml = false
                 };
-                mailMessage.Bcc.Add(addresses: settings.Cc);
-                mailMessage.Bcc.Add(addresses: settings.Bcc);
+                if (!string.IsNullOrEmpty(settings.Cc))
+                    mailMessage.CC.Add(addresses: settings.Cc);
+                if (!string.IsNullOrEmpty(settings.Bcc))
+                    mailMessage.Bcc.Add(addresses: settings.Bcc);
                 var smtpClient = new SmtpClient(settings.Host, settings.Port);
                 var networkCredential = new NetworkCredential()
                 {
@@ -41,7 +43,7 @@ namespace Bns.Framework.Common.Messaging
             }
         }
 
-        private string FormMessage(Dictionary<string,string> details)
+        private string FormMessage(Dictionary<string, string> details)
         {
             string extract = "Following details are extracted from PDF";
             extract += "\n" + ("Work Order:" + details["WorkOrder"]);
